@@ -1,1 +1,260 @@
-Hello world
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RANEQU — Ideas That Win Tomorrow</title>
+  <meta name="description" content="RANEQU publishes sharp field notes on tech, IT, and software engineering for the enterprise. Minimal noise. Maximum signal." />
+  <meta property="og:title" content="RANEQU — Ideas That Win Tomorrow" />
+  <meta property="og:description" content="Creating path for the future. We lead, others follow." />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B0B0C'/%3E%3Cpath d='M16 44L32 12l16 32h-6l-4-8H26l-4 8h-6zm16-24 5.5 12h-11L32 20z' fill='%23A6CE39'/%3E%3C/svg%3E" />
+  <style>
+    :root{
+      /* ElanSports-inspired greens */
+      --brand:#A6CE39; /* primary */
+      --brand-2:#7FB62B; /* darker */
+      --brand-3:#C7E76A; /* lighter */
+      --bg:#0b0b0c; --fg:#F6F8F2; --muted:#A9B1A6; --line:#1F221C;
+      --pad:clamp(16px,3vw,32px); --max:1140px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial; color:var(--fg); background:
+      radial-gradient(1000px 500px at 110% -10%, #132112 0%, transparent 60%),
+      radial-gradient(900px 500px at -10% 120%, #0e1a0e 0%, transparent 60%),
+      var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 var(--pad)}
+
+    /* Header */
+    header{position:sticky; top:0; z-index:40; backdrop-filter:saturate(120%) blur(8px); background:color-mix(in oklab, var(--bg) 85%, transparent); border-bottom:1px solid var(--line)}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.08em}
+    .brand-logo{width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); display:grid; place-items:center; box-shadow:0 0 0 1px #0007, 0 10px 20px #0005}
+    .brand-logo svg{width:18px; height:18px}
+    .menu{display:flex; gap:20px}
+    .menu a{color:var(--muted); font-weight:600}
+    .menu a:hover{color:var(--fg)}
+    .cta{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border:1px solid var(--line); border-radius:999px; background:linear-gradient(180deg,#121413,#0b0c0b); color:var(--fg); font-weight:800}
+
+    /* Hero */
+    .hero{padding:clamp(48px,8vw,96px) 0}
+    .kicker{color:var(--muted); text-transform:uppercase; letter-spacing:.2em; font-size:.8rem}
+    .title{font-size:clamp(2.6rem,6vw,5rem); line-height:1.06; font-weight:900; margin:.35em 0 .2em}
+    .stroke{background:linear-gradient(90deg,var(--brand),var(--brand-2),var(--brand-3)); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .subtitle{max-width:62ch; color:#dfe6d8}
+
+    /* Banded slogans */
+    .band{margin:42px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+    .row{overflow:hidden; white-space:nowrap}
+    .marquee{display:inline-block; padding:14px 0; animation:scroll 18s linear infinite}
+    .marquee span{display:inline-block; padding:0 24px; color:#d1e6b2}
+    .dot{width:6px; height:6px; border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--brand-2)); display:inline-block; transform:translateY(-2px)}
+    @keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+
+    /* Sections */
+    .grid{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{border:1px solid var(--line); border-radius:16px; padding:20px; background:linear-gradient(180deg,#0E120E,#0A0D0A)}
+    .card h3{margin:.2em 0 .4em; font-size:1.12rem}
+    .badge{display:inline-block; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:#bcd8a0}
+
+    .feature{display:grid; gap:22px; grid-template-columns:1.05fr .95fr; align-items:center; margin:72px 0}
+    .feature.reverse{grid-template-columns:.95fr 1.05fr}
+    .panel{border:1px solid var(--line); border-radius:18px; padding:22px; background:linear-gradient(180deg,#0f130f,#0c100c)}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.95rem; color:#e2f1cc}
+    @media (max-width: 920px){ .feature, .feature.reverse{grid-template-columns:1fr} }
+
+    /* Pills, stats */
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:20px; margin:8px 0 18px}
+    .section-head h2{font-size:clamp(1.6rem,3.4vw,2.4rem); margin:0}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--line); border-radius:999px; color:#cfe8b5}
+    .stat{display:flex; flex-direction:column; gap:4px; padding:18px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(180deg,#0e0f12,#0b0b0e)}
+    .stat b{font-size:1.6rem}
+
+    /* Footer */
+    footer{margin-top:96px; border-top:1px solid var(--line)}
+    .foot{display:flex; gap:20px; align-items:center; justify-content:space-between; padding:22px 0; color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="RANEQU home">
+        <span class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 18 12 3l9 15h-4.2l-2.8-5H10l-2.8 5H3Z" fill="white"/></svg>
+        </span>
+        <span>RANEQU</span>
+      </a>
+      <nav class="menu" aria-label="Sections">
+        <a href="#mission">Mission</a>
+        <a href="#problems">Problems</a>
+        <a href="#perspective">Perspective</a>
+        <a href="#playbook">Playbook</a>
+        <a href="#signals">Signals</a>
+        <a href="#subscribe" class="cta">Subscribe</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="kicker">Tech • IT • Software Engineering • Enterprise</div>
+      <h1 id="hero-title" class="title"><span class="stroke">Ideas That Win Tomorrow</span></h1>
+      <p class="subtitle">We publish high‑leverage notes on ambiguous, enterprise‑grade problems: the kind that don’t fit tidy tutorials. Creating path for the future. <strong>We lead, others follow.</strong></p>
+      <div class="band" role="presentation">
+        <div class="row">
+          <div class="marquee" aria-hidden="true">
+            <span>Ideas That Win Tomorrow</span><span class="dot"></span>
+            <span>Creating path for the future</span><span class="dot"></span>
+            <span>We lead, others follow</span><span class="dot"></span>
+            <span>Systems over slogans</span>
+            <span>Ideas That Win Tomorrow</span><span class="dot"></span>
+            <span>Creating path for the future</span><span class="dot"></span>
+            <span>We lead, others follow</span><span class="dot"></span>
+            <span>Execution over excuses</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mission" class="container feature">
+      <div>
+        <h2 class="title" style="font-size:clamp(1.8rem,4vw,3rem); margin:0 0 .3em">The Mission</h2>
+        <p class="subtitle">Illuminate the playbooks for enterprise software that actually work. We cut through vague goals to name the constraints, design the system, and move the needle.</p>
+        <form action="#" method="POST" id="subscribe">
+          <input type="email" name="email" placeholder="you@domain.com" aria-label="Email address" required>
+          <button type="submit" aria-label="Subscribe to RANEQU" class="cta">Subscribe</button>
+        </form>
+        <small class="badge">Zero spam. Unsubscribe anytime.</small>
+      </div>
+      <div class="panel mono" aria-label="Sample topics">
+        <div class="badge">Upcoming Essays</div>
+<pre>
+- What to do when the roadmap is a wishlist
+- Designing guardrails: golden paths without dictatorship
+- When platform beats product — and when it kills velocity
+- SLOs that survive exec reviews
+- Org rewrites: shipping while re-architecting
+</pre>
+      </div>
+    </section>
+
+    <section id="problems" class="container" aria-labelledby="problems-title">
+      <div class="section-head">
+        <h2 id="problems-title">Vaguely‑Defined Problems (Our Arena)</h2>
+        <span class="pill">ambiguous × cross‑functional × high‑risk</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="badge">Enterprise</div>
+          <h3>“Modernize the core system”</h3>
+          <p>How to de‑risk rewrites: strangler patterns, parallel run, KPIs that track migration reality not slideware.</p>
+        </article>
+        <article class="card">
+          <div class="badge">Scale</div>
+          <h3>“Improve reliability”</h3>
+          <p>Translate outage pain into SLOs, error budgets, and crisp escalation playbooks your CFO will back.</p>
+        </article>
+        <article class="card">
+          <div class="badge">Platform</div>
+          <h3>“Unify dev experience”</h3>
+          <p>Golden paths that reduce variance, not creativity. Contracts, templates, paved‑road automation.</p>
+        </article>
+        <article class="card">
+          <div class="badge">Security</div>
+          <h3>“Make compliance invisible”</h3>
+          <p>Shift‑left controls, audit‑ready logs, and practical key/cert lifecycle that won’t slow shipping.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="perspective" class="container feature reverse" aria-labelledby="perspective-title">
+      <div class="panel">
+        <div class="badge">Point of View</div>
+        <p class="mono">Simple beats clever. Systems beat heroics. Written decisions beat meetings. If it isn’t measurable, it isn’t real. If it isn’t reliable, it isn’t done.</p>
+      </div>
+      <div>
+        <h2 id="perspective-title" class="title" style="font-size:clamp(1.8rem,4vw,3rem); margin:0 0 .3em">Operators first.</h2>
+        <p class="subtitle">We write for the people keeping the lights on and shipping the wins — not for vanity metrics.</p>
+      </div>
+    </section>
+
+    <section id="playbook" class="container" aria-labelledby="playbook-title">
+      <div class="section-head">
+        <h2 id="playbook-title">The Playbook</h2>
+        <span class="pill">clarity → constraints → decisions → execution</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="badge">01</div>
+          <h3>Name the game</h3>
+          <p>Define the business outcome, the non‑goals, and the scoreboard you’ll actually check weekly.</p>
+        </article>
+        <article class="card">
+          <div class="badge">02</div>
+          <h3>Design the system</h3>
+          <p>Interfaces, SLOs, versioning, and change budgets. Make the happy path obvious and fast.</p>
+        </article>
+        <article class="card">
+          <div class="badge">03</div>
+          <h3>Decide & commit</h3>
+          <p>Write the one‑pager. Lock scope. Sequence work for compounding wins, not perfect plans.</p>
+        </article>
+        <article class="card">
+          <div class="badge">04</div>
+          <h3>Ship and learn</h3>
+          <p>Short cycles, strong retros, metrics that drive behavior. Cut what doesn’t move the needle.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="signals" class="container feature" aria-labelledby="signals-title">
+      <div>
+        <h2 id="signals-title" class="title" style="font-size:clamp(1.6rem,3.4vw,2.4rem); margin:0 0 .3em">Signals (recent)</h2>
+        <p class="subtitle">Short, dense notes you can use this week.</p>
+        <ul class="mono" style="margin-top:10px">
+          <li>Incident review format that prevents blame and produces fixes</li>
+          <li>How to sunset a service without burning the roadmap</li>
+          <li>Controlling complexity: 3 thresholds for saying “no”</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+          <div class="stat"><span class="badge">First Byte</span><b>&lt; 100 ms</b><small class="muted">Edge cached</small></div>
+          <div class="stat"><span class="badge">Page Weight</span><b>&lt; 35 KB</b><small class="muted">No JS required</small></div>
+          <div class="stat"><span class="badge">Uptime</span><b>99.9%</b><small class="muted">Static hosting</small></div>
+          <div class="stat"><span class="badge">Read Time</span><b>3–5 min</b><small class="muted">Dense, practical</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" aria-labelledby="cta-title">
+      <h2 id="cta-title" class="kicker">Stay in the loop</h2>
+      <div class="card" style="margin-top:10px">
+        <p style="margin:0">Get new posts by email. One click. No nonsense.</p>
+        <form action="#" method="POST">
+          <input type="email" name="email" placeholder="you@domain.com" aria-label="Email address" required>
+          <button type="submit" class="cta">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>&copy; <span id="y"></span> RANEQU</div>
+      <div style="display:flex; gap:16px">
+        <a href="#" aria-label="X/Twitter">X</a>
+        <a href="#" aria-label="GitHub">GitHub</a>
+        <a href="mailto:hello@ranequ.com" aria-label="Email">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
