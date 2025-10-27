@@ -4,25 +4,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RANEQU — Ideas That Win Tomorrow</title>
-  <meta name="description" content="RANEQU publishes sharp field notes on tech, IT, and software engineering for the enterprise. Minimal noise. Maximum signal." />
+  <meta name="description" content="RANEQU publishes sharp, enterprise‑grade field notes on tech, IT, and software engineering. We turn vaguely‑defined problems into operating playbooks." />
   <meta property="og:title" content="RANEQU — Ideas That Win Tomorrow" />
   <meta property="og:description" content="Creating path for the future. We lead, others follow." />
   <meta name="theme-color" content="#0b0b0c" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B0B0C'/%3E%3Cpath d='M16 44L32 12l16 32h-6l-4-8H26l-4 8h-6zm16-24 5.5 12h-11L32 20z' fill='%23A6CE39'/%3E%3C/svg%3E" />
   <style>
     :root{
-      /* ElanSports-inspired greens */
-      --brand:#A6CE39; /* primary */
+      /* ElanSports-inspired palette */
+      --brand:#A6CE39; /* primary green */
       --brand-2:#7FB62B; /* darker */
       --brand-3:#C7E76A; /* lighter */
-      --bg:#0b0b0c; --fg:#F6F8F2; --muted:#A9B1A6; --line:#1F221C;
+      --ink:#F4F7EF; --muted:#B5C7A4; --line:#1f241b; --bg:#0b0b0c;
       --pad:clamp(16px,3vw,32px); --max:1140px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial; color:var(--fg); background:
-      radial-gradient(1000px 500px at 110% -10%, #132112 0%, transparent 60%),
-      radial-gradient(900px 500px at -10% 120%, #0e1a0e 0%, transparent 60%),
+    body{margin:0; font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial; color:var(--ink); background:
+      radial-gradient(1000px 520px at 110% -10%, #142414 0%, transparent 60%),
+      radial-gradient(900px 500px at -10% 120%, #0f1c0f 0%, transparent 60%),
       var(--bg);
     }
     a{color:inherit; text-decoration:none}
@@ -36,21 +36,26 @@
     .brand-logo svg{width:18px; height:18px}
     .menu{display:flex; gap:20px}
     .menu a{color:var(--muted); font-weight:600}
-    .menu a:hover{color:var(--fg)}
-    .cta{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border:1px solid var(--line); border-radius:999px; background:linear-gradient(180deg,#121413,#0b0c0b); color:var(--fg); font-weight:800}
+    .menu a:hover{color:var(--ink)}
+    .cta{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border:1px solid var(--line); border-radius:999px; background:linear-gradient(180deg,#141614,#0b0c0b); color:var(--ink); font-weight:800}
 
     /* Hero */
-    .hero{padding:clamp(48px,8vw,96px) 0}
+    .hero{padding:clamp(56px,10vw,120px) 0; position:relative}
+    .hero .bg-photo{position:absolute; inset:0; z-index:-1; opacity:.25; background:
+      linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.85)),
+      url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1920&auto=format&fit=crop');
+      background-size:cover; background-position:center; filter:saturate(1.1) contrast(1.05);
+    }
     .kicker{color:var(--muted); text-transform:uppercase; letter-spacing:.2em; font-size:.8rem}
     .title{font-size:clamp(2.6rem,6vw,5rem); line-height:1.06; font-weight:900; margin:.35em 0 .2em}
     .stroke{background:linear-gradient(90deg,var(--brand),var(--brand-2),var(--brand-3)); -webkit-background-clip:text; background-clip:text; color:transparent}
-    .subtitle{max-width:62ch; color:#dfe6d8}
+    .subtitle{max-width:66ch; color:#e4f1d4}
 
-    /* Banded slogans */
+    /* Band */
     .band{margin:42px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
     .row{overflow:hidden; white-space:nowrap}
     .marquee{display:inline-block; padding:14px 0; animation:scroll 18s linear infinite}
-    .marquee span{display:inline-block; padding:0 24px; color:#d1e6b2}
+    .marquee span{display:inline-block; padding:0 24px; color:#cfe8b5}
     .dot{width:6px; height:6px; border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--brand-2)); display:inline-block; transform:translateY(-2px)}
     @keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
 
@@ -72,6 +77,12 @@
     .pill{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--line); border-radius:999px; color:#cfe8b5}
     .stat{display:flex; flex-direction:column; gap:4px; padding:18px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(180deg,#0e0f12,#0b0b0e)}
     .stat b{font-size:1.6rem}
+
+    /* Photo rows */
+    .photo-row{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px}
+    .photo{position:relative; height:180px; border-radius:12px; overflow:hidden; border:1px solid #1a2816}
+    .photo::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent,rgba(0,0,0,.45))}
+    .photo img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.05)}
 
     /* Footer */
     footer{margin-top:96px; border-top:1px solid var(--line)}
@@ -99,21 +110,26 @@
   </header>
 
   <main id="top">
-    <section class="hero container" aria-labelledby="hero-title">
-      <div class="kicker">Tech • IT • Software Engineering • Enterprise</div>
-      <h1 id="hero-title" class="title"><span class="stroke">Ideas That Win Tomorrow</span></h1>
-      <p class="subtitle">We publish high‑leverage notes on ambiguous, enterprise‑grade problems: the kind that don’t fit tidy tutorials. Creating path for the future. <strong>We lead, others follow.</strong></p>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="bg-photo" aria-hidden="true"></div>
+      <div class="container">
+        <div class="kicker">Tech • IT • Software Engineering • Enterprise</div>
+        <h1 id="hero-title" class="title"><span class="stroke">Ideas That Win Tomorrow</span></h1>
+        <p class="subtitle">We publish high‑leverage notes on ambiguous, enterprise‑grade problems: the kind that don’t fit tidy tutorials. Creating path for the future. <strong>We lead, others follow.</strong></p>
+      </div>
       <div class="band" role="presentation">
-        <div class="row">
-          <div class="marquee" aria-hidden="true">
-            <span>Ideas That Win Tomorrow</span><span class="dot"></span>
-            <span>Creating path for the future</span><span class="dot"></span>
-            <span>We lead, others follow</span><span class="dot"></span>
-            <span>Systems over slogans</span>
-            <span>Ideas That Win Tomorrow</span><span class="dot"></span>
-            <span>Creating path for the future</span><span class="dot"></span>
-            <span>We lead, others follow</span><span class="dot"></span>
-            <span>Execution over excuses</span>
+        <div class="container">
+          <div class="row">
+            <div class="marquee" aria-hidden="true">
+              <span>Ideas That Win Tomorrow</span><span class="dot"></span>
+              <span>Creating path for the future</span><span class="dot"></span>
+              <span>We lead, others follow</span><span class="dot"></span>
+              <span>Systems over slogans</span>
+              <span>Ideas That Win Tomorrow</span><span class="dot"></span>
+              <span>Creating path for the future</span><span class="dot"></span>
+              <span>We lead, others follow</span><span class="dot"></span>
+              <span>Execution over excuses</span>
+            </div>
           </div>
         </div>
       </div>
@@ -151,21 +167,41 @@
           <div class="badge">Enterprise</div>
           <h3>“Modernize the core system”</h3>
           <p>How to de‑risk rewrites: strangler patterns, parallel run, KPIs that track migration reality not slideware.</p>
+          <div class="photo-row" aria-hidden="true">
+            <div class="photo"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" alt=""></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop" alt=""></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?q=80&w=800&auto=format&fit=crop" alt=""></div>
+          </div>
         </article>
         <article class="card">
           <div class="badge">Scale</div>
           <h3>“Improve reliability”</h3>
           <p>Translate outage pain into SLOs, error budgets, and crisp escalation playbooks your CFO will back.</p>
+          <div class="photo-row" aria-hidden="true">
+            <div class="photo"><img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=800&auto=format&fit=crop" alt=""></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1555375771-14b2f1df7431?q=80&w=800&auto=format&fit=crop" alt=""></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?q=80&w=800&auto=format&fit=crop" alt=""></div>
+          </div>
         </article>
         <article class="card">
           <div class="badge">Platform</div>
           <h3>“Unify dev experience”</h3>
           <p>Golden paths that reduce variance, not creativity. Contracts, templates, paved‑road automation.</p>
+          <div class="photo-row" aria-hidden="true">
+            <div class="photo"><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=800&auto=format&fit=crop" alt=""></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" alt=""></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt=""></div>
+          </div>
         </article>
         <article class="card">
           <div class="badge">Security</div>
           <h3>“Make compliance invisible”</h3>
           <p>Shift‑left controls, audit‑ready logs, and practical key/cert lifecycle that won’t slow shipping.</p>
+          <div class="photo-row" aria-hidden="true">
+            <div class="photo"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop" alt=""></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop" alt=""></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop" alt=""></div>
+          </div>
         </article>
       </div>
     </section>
